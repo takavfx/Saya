@@ -44,7 +44,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox"/>
+               <widget class="QComboBox" name="projectComboBox"/>
               </item>
              </layout>
             </item>
@@ -58,7 +58,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_2"/>
+               <widget class="QComboBox" name="appComboBox"/>
               </item>
              </layout>
             </item>
@@ -72,7 +72,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_3"/>
+               <widget class="QComboBox" name="versionComboBox"/>
               </item>
              </layout>
             </item>
@@ -86,7 +86,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_4"/>
+               <widget class="QComboBox" name="optionComboBox"/>
               </item>
              </layout>
             </item>
@@ -110,7 +110,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="launchPushButton">
         <property name="minimumSize">
          <size>
           <width>0</width>
