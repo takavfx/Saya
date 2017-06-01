@@ -1,0 +1,20 @@
+apps:
+    Houdini:
+        Versions:
+            '15.0':
+                - houdini
+            '16.0':
+                - houdini
+        Options:
+            - default
+            - APPRENTICE
+
+    Maya:
+        Versions:
+            '2016':
+                - maya
+            '2017':
+                - maya
+
+projects:
+    default:
