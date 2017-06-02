@@ -1,20 +1,46 @@
+#apps:
+#   Houdini:
+#       versions:
+#           '16.0':
+#               - houdini
+#   Blender:
+#       versions:
+#           '2.78c':
+#               - blender-2.78c
+#               
+#
+#
+
 apps:
     Houdini:
-        Versions:
-            '15.0':
-                - houdini
-            '16.0':
-                - houdini
-        Options:
+        versions:
+            '16.0.557':
+                - cd /opt/hfs16.0.557;source houdini_setup;houdini;cd $home
+            '16.0.600':
+                - cd /opt/hfs16.0.600;source houdini_setup;houdini;cd $home
+        options:
             - default
             - APPRENTICE
 
-    Maya:
-        Versions:
-            '2016':
-                - maya
-            '2017':
-                - maya
+    Blender:
+        versions:
+            '2.78c':
+                - blender-2.78c
+
+    Nuke:
+        versions:
+            '10':
+                - nuke
 
 projects:
     default:
+        Houdini:
+            -
+    dev-bento:
+        Houdini:
+            -
+
+
+repository:
+    Houdini:
+        - test
