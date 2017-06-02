@@ -3,7 +3,7 @@
 import os
 import webbrowser
 
-from PySide import QtCore, QtGui, QtSvg
+from PySide import QtCore, QtGui
 from PySide.QtUiTools import QUiLoader
 
 import yaml
@@ -27,7 +27,7 @@ class MainWindow(QtGui.QMainWindow):
     _windowTitle  = DEFINE.windowTitle
     _windowHeight = DEFINE.windowHeight
     _windowWidth  = DEFINE.windowWidth
-    # toolIcon    = QtGui.QIcon(DEFINE.mantleIconPath)
+    toolIcon      = QtGui.QIcon(DEFINE.toolIconPath)
 
 
     def __init__(self, parent=None):
@@ -43,13 +43,13 @@ class MainWindow(QtGui.QMainWindow):
         layout = QtGui.QVBoxLayout()
         layout.addWidget(self.UI)
         self.setLayout(layout)
-
-        self.setObjectName(self._windowName)
-        self.setWindowTitle(self._windowTitle)
-
         self.setCentralWidget(self.UI)
 
         self.setSignals()
+
+        self.setObjectName(self._windowName)
+        self.setWindowTitle(self._windowTitle)
+        self.setWindowIcon(self.toolIcon)
 
         self.setApplications()
         self.setProjects()
@@ -85,7 +85,7 @@ class MainWindow(QtGui.QMainWindow):
         currentApp = self.UI.appComboBox.currentText()
         for appItems in CONFIG['apps'].items():
             if currentApp == appItems[0]:
-                versions = appItems[1].get('Versions').keys()
+                versions = appItems[1].get('versions').keys()
 
         self.UI.versionComboBox.addItems(versions)
 
@@ -96,7 +96,7 @@ class MainWindow(QtGui.QMainWindow):
         currentApp = self.UI.appComboBox.currentText()
         for appItems in CONFIG['apps'].items():
             if currentApp == appItems[0]:
-                options = appItems[1].get('Options')
+                options = appItems[1].get('options')
         
         if options:
             self.UI.optionComboBox.addItems(options)
