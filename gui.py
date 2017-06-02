@@ -109,12 +109,22 @@ class MainWindow(QtGui.QMainWindow):
         version = self.UI.versionComboBox.currentText()
         option  = self.UI.optionComboBox.currentText()
         
-        words = ['Start launching',app, version,'as', option, 'mode.']
+        words = ["[[ START LAUNCHING ]] :: ",app, version,"as", option, "mode."]
         print ' '.join(words)
 
+        exe = CONFIG.get('apps').get(app).get('versions').get(version)
+        if not exe:
+            print "[[ DEFINITION ERROR ]] :: The app exe is not defined."
+            return
+        
+        if not option == 'default':
+            elemetns = [exe, option]
+            cmds = ' '.join(elemetns)
+        else:
+            cmds = exe
 
         try:
-            core.launch(app=app, version=version, option=option)
+            core.launch(cmds=cmds)
         except:
             import traceback
             print traceback.format_exc()
