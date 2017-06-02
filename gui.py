@@ -113,9 +113,19 @@ class MainWindow(QtGui.QMainWindow):
 
 
     def launchApp(self):
-        app = self.UI.appComboBox.currentText()
-        print 'Launch ' + app
+        app     = self.UI.appComboBox.currentText()
+        version = self.UI.versionComboBox.currentText()
+        option  = self.UI.optionComboBox.currentText()
+        
+        words = ['Start launching',app, version,'as', option, 'mode.']
+        print ' '.join(words)
 
+
+        try:
+            core.launch(app=app, version=version, option=option)
+        except:
+            import traceback
+            print traceback.format_exc()
 
 def main():
     import sys
