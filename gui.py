@@ -8,22 +8,15 @@ from PySide.QtUiTools import QUiLoader
 
 import yaml
 
+import core
 import define as DEFINE
+import config as Config
 
 
 _CURRENTPATH = os.path.dirname(os.path.realpath(__file__))
 
 
-if os.environ.get('SAYA_CONFIG_PATH'):
-    config_file = os.path.join(os.environ.get('SAYA_CONFIG_PATH'), 'saya.yaml')
-    f = open(config_file, 'r')
-    CONFIG = yaml.load(f)
-else:
-    f = open(os.path.join(_CURRENTPATH, 'config', 'saya.yaml'), 'r')
-    CONFIG = yaml.load(f)
-
-print CONFIG
-
+CONFIG = Config.getConfig()
 
 class MainWindow(QtGui.QMainWindow):
     """
@@ -91,7 +84,6 @@ class MainWindow(QtGui.QMainWindow):
 
         currentApp = self.UI.appComboBox.currentText()
         for appItems in CONFIG['apps'].items():
-            print appItems
             if currentApp == appItems[0]:
                 versions = appItems[1].get('Versions').keys()
 
