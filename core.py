@@ -6,7 +6,8 @@ _CURRENTPATH = os.path.dirname(os.path.realpath(__file__))
 
 
 def call(cmds):
-    subprocess.call(cmds)
+    proc = subprocess.Popen(cmds)
+    proc.communicate()
 
 def launch(cmds):
     p = Process(target=call, args=(cmds,))
