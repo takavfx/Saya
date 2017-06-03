@@ -18,7 +18,7 @@ _CURRENTPATH = os.path.dirname(os.path.realpath(__file__))
 
 CONFIG = Config.getConfig()
 
-class MainWindow(QtGui.QMainWindow):
+class MainWindow(QtCore.QObject):
     """
     Main window class of this tool.
     """
@@ -30,26 +30,29 @@ class MainWindow(QtGui.QMainWindow):
     toolIcon      = QtGui.QIcon(DEFINE.toolIconPath)
 
 
-    def __init__(self, parent=None):
-        super(MainWindow, self).__init__(parent)
-
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        self.UI = None
         self.initGUI()
 
+
+    def show(self):
+        self.UI.show()
 
     def initGUI(self):
         loader = QUiLoader()
         self.UI = loader.load(DEFINE.mainUIPath)
 
-        layout = QtGui.QVBoxLayout()
-        layout.addWidget(self.UI)
-        self.setLayout(layout)
-        self.setCentralWidget(self.UI)
+        # layout = QtGui.QVBoxLayout()
+        # layout.addWidget(self.UI)
+        # self.setLayout(layout)
+        # self.setCentralWidget(self.UI)
 
         self.setSignals()
 
-        self.setObjectName(self._windowName)
-        self.setWindowTitle(self._windowTitle)
-        self.setWindowIcon(self.toolIcon)
+        self.UI.setObjectName(self._windowName)
+        self.UI.setWindowTitle(self._windowTitle)
+        self.UI.setWindowIcon(self.toolIcon)
 
         self.setApplications()
         self.setProjects()
@@ -66,7 +69,7 @@ class MainWindow(QtGui.QMainWindow):
 
 
     def resetWindowSize(self):
-        self.resize(self._windowWidth, self._windowHeight)
+        self.UI.resize(self._windowWidth, self._windowHeight)
 
 
     def setProjects(self):
@@ -104,12 +107,23 @@ class MainWindow(QtGui.QMainWindow):
             self.UI.optionComboBox.addItem('default')
 
 
+    def getTabIndexByTitle(self, title):
+        index = 0
+        while index < self.count():
+            if self.tabText(index) == title:
+                return index
+
+            index += 1
+
+        return None
+
+
     def launchApp(self):
         app     = self.UI.appComboBox.currentText()
         version = self.UI.versionComboBox.currentText()
         option  = self.UI.optionComboBox.currentText()
         
-        words = ["[[ START LAUNCHING ]] :: ",app, version,"as", option, "mode."]
+        words = ["\n[[ START LAUNCHING ]] :: ",app, version,"as", option, "mode."]
         print ' '.join(words)
 
         exe = CONFIG.get('apps').get(app).get('versions').get(version)
@@ -117,17 +131,22 @@ class MainWindow(QtGui.QMainWindow):
             print "[[ DEFINITION ERROR ]] :: The app exe is not defined."
             return
         
+        cmds = []
         if not option == 'default':
             elemetns = [exe, option]
             cmds = ' '.join(elemetns)
         else:
             cmds = exe
 
+        print "[[ LAUNCH CMDS ]] :: " + cmds[0]
+
         try:
             core.launch(cmds=cmds)
         except:
             import traceback
             print traceback.format_exc()
+
+
 
 def main():
     import sys
