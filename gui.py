@@ -16,7 +16,7 @@ import config as Config
 _CURRENTPATH = os.path.dirname(os.path.realpath(__file__))
 
 
-CONFIG = Config.getConfig()
+CONFIG = Config.getLauncherConfig()
 
 class MainWindow(QtCore.QObject):
     """
