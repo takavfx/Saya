@@ -119,32 +119,39 @@ class MainWindow(QtCore.QObject):
 
 
     def launchApp(self):
-        app     = self.UI.appComboBox.currentText()
-        version = self.UI.versionComboBox.currentText()
-        option  = self.UI.optionComboBox.currentText()
-        
-        words = ["\n[[ START LAUNCHING ]] :: ",app, version,"as", option, "mode."]
-        print ' '.join(words)
+        if self.UI.mainTabWidget.currentIndex() == 1:
 
-        exe = CONFIG.get('apps').get(app).get('versions').get(version)
-        if not exe:
-            print "[[ DEFINITION ERROR ]] :: The app exe is not defined."
-            return
-        
-        cmds = []
-        if not option == 'default':
-            elemetns = [exe, option]
-            cmds = ' '.join(elemetns)
-        else:
-            cmds = exe
+            app     = self.UI.appComboBox.currentText()
+            version = self.UI.versionComboBox.currentText()
+            option  = self.UI.optionComboBox.currentText()
+            
+            words = ["\n[[ START LAUNCHING ]] :: ",app, version,"as", option, "mode."]
+            print ' '.join(words)
 
-        print "[[ LAUNCH CMDS ]] :: " + cmds[0]
+            exe = CONFIG.get('apps').get(app).get('versions').get(version)
+            if not exe:
+                print "[[ DEFINITION ERROR ]] :: The app exe is not defined."
+                return
+            
+            cmds = []
+            if not option == 'default':
+                elemetns = [exe, option]
+                cmds = ' '.join(elemetns)
+            else:
+                cmds = exe
 
-        try:
-            core.launch(cmds=cmds)
-        except:
-            import traceback
-            print traceback.format_exc()
+            print "[[ LAUNCH CMDS ]] :: " + cmds[0]
+
+            try:
+                core.launch(cmds=cmds)
+            except:
+                import traceback
+                print traceback.format_exc()
+
+
+
+
+
 
 
 
