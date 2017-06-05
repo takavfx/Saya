@@ -18,7 +18,7 @@ def getLauncherConfig():
     return CONFIG
 
 
-def getPresetConfig():
+def getPresetsConfig():
     if os.environ.get('SAYA_PRESET_CONFIG_PATH'):
         config_file = os.path.join(os.environ.get('SAYA_PRESET_CONFIG_PATH'), 'saya_preset.yaml')
         f = open(config_file, 'r')
@@ -28,7 +28,7 @@ def getPresetConfig():
             path = os.environ.get('APPDATA')
         platform.system() == 'Linux' or 'Mac':
             path = os.environ.get('HOME')
-        f = open(os.path.join(path, 'saya_preset.yaml'), 'r')
+        f = open(os.path.join(path, 'saya_presets.yaml'), 'r')
         CONFIG = yaml.load(f)
 
 

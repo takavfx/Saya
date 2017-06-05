@@ -43,7 +43,7 @@ class MainWindow(QtCore.QObject):
         loader = QUiLoader()
         self.UI = loader.load(DEFINE.mainUIPath)
 
-        self.createPresetList()
+        self.createPresetsList()
         self.setSignals()
 
         self.UI.setObjectName(self._windowName)
@@ -67,9 +67,9 @@ class MainWindow(QtCore.QObject):
         self.UI.resize(self._windowWidth, self._windowHeight)
 
 
-    def createPresetList(self):
+    def createPresetsList(self):
         pass
-        # data = Config.getPresetConfig()
+        # data = Config.getPresetsConfig()
         # CustomListDelegate(data)
 
     def setProjects(self):
