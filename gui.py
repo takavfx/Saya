@@ -48,6 +48,7 @@ class MainWindow(QtCore.QObject):
         # self.setLayout(layout)
         # self.setCentralWidget(self.UI)
 
+        self.createPresetList()
         self.setSignals()
 
         self.UI.setObjectName(self._windowName)
@@ -71,6 +72,11 @@ class MainWindow(QtCore.QObject):
     def resetWindowSize(self):
         self.UI.resize(self._windowWidth, self._windowHeight)
 
+
+    def createPresetList(self):
+        pass
+        # data = Config.getPresetConfig()
+        # CustomListDelegate(data)
 
     def setProjects(self):
         self.UI.projectComboBox.clear()
