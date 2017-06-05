@@ -43,11 +43,6 @@ class MainWindow(QtCore.QObject):
         loader = QUiLoader()
         self.UI = loader.load(DEFINE.mainUIPath)
 
-        # layout = QtGui.QVBoxLayout()
-        # layout.addWidget(self.UI)
-        # self.setLayout(layout)
-        # self.setCentralWidget(self.UI)
-
         self.createPresetList()
         self.setSignals()
 
@@ -59,7 +54,6 @@ class MainWindow(QtCore.QObject):
         self.setProjects()
 
         self.resetWindowSize()
-
 
 
     def setSignals(self):
