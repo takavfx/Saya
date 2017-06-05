@@ -18,7 +18,7 @@ def getLauncherConfig():
     return CONFIG
 
 
-def getPrsetConfig():
+def getPresetConfig():
     if os.environ.get('SAYA_PRESET_CONFIG_PATH'):
         config_file = os.path.join(os.environ.get('SAYA_PRESET_CONFIG_PATH'), 'saya_preset.yaml')
         f = open(config_file, 'r')
