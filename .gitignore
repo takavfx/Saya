@@ -33,11 +33,12 @@
 !ChangeLog
 
 # Ignore Specific directories
-*.vscode
+*.vscode/
 
 # Ignore Specific File Types
 *.pyc
 *.DS_Store
+*.ui.autosave
 
 
 # Not ignore this file change
