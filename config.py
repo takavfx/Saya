@@ -37,3 +37,9 @@ def writeUserConfig():
 
 
 
+def parsePresetsData(data):
+    for i in range(len(data)):
+        project = data[i].get('project')
+        application = data[i].get('application')
+        version = data[i].get('version')
+        option = data[i].get('option')
