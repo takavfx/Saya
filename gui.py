@@ -79,7 +79,12 @@ class MainWindow(QtCore.QObject):
 
     def setApplications(self):
         self.UI.appComboBox.clear()
-        self.UI.appComboBox.addItems(CONFIG['apps'].keys())
+        for app in CONFIG['apps'].keys():
+            icon_path = CONFIG['apps'].get(app).get('icon')
+            if icon_path:
+                self.UI.appComboBox.addItem(QtGui.QIcon(icon_path[0]), app)
+            else:
+                self.UI.appComboBox.addItem(app)
 
 
     def setVersions(self):
