@@ -24,9 +24,9 @@ def getPresetsConfig():
         f = open(config_file, 'r')
         CONFIG = yaml.laod(f)
     else:
-        platform.system() == 'Windows':
+        if platform.system() == 'Windows':
             path = os.environ.get('APPDATA')
-        platform.system() == 'Linux' or 'Mac':
+        elif platform.system() == 'Linux' or 'Mac':
             path = os.environ.get('HOME')
         f = open(os.path.join(path, 'saya_presets.yaml'), 'r')
         CONFIG = yaml.load(f)
@@ -34,3 +34,6 @@ def getPresetsConfig():
 
 def writeUserConfig():
     pass
+
+
+
