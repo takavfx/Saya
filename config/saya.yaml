@@ -13,6 +13,8 @@
 
 apps:
     Houdini:
+        icon:
+            - /opt/hfs16.0/houdini_logo.png
         versions:
             '16.0.557':
                 - cd /opt/hfs16.0.557;source houdini_setup;houdini;cd $home
@@ -20,9 +22,10 @@ apps:
                 - cd /opt/hfs16.0.600;source houdini_setup;houdini;cd $home
         options:
             - default
-            - APPRENTICE
 
     Blender:
+        icon:
+            - /opt/blender-2.78c/blender.svg
         versions:
             '2.78c':
                 - blender-2.78c
