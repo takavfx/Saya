@@ -14,8 +14,10 @@ def getLauncherConfig():
         f = open(os.path.join(_CURRENTPATH, 'config', 'saya.yaml'), 'r')
         CONFIG = yaml.load(f)
 
+    print "\n[[ LOADING ]] :: Loading launcher config data."
     print CONFIG
     return CONFIG
+
 
 
 def getPresetsConfig():
@@ -31,10 +33,9 @@ def getPresetsConfig():
         f = open(os.path.join(path, 'saya_presets.yaml'), 'r')
         CONFIG = yaml.load(f)
 
-
-def writeUserConfig():
-    pass
-
+    print "\n[[ LOADING ]] :: Loading Preset config data."
+    print CONFIG
+    return CONFIG
 
 
 def parsePresetsData(data):
@@ -43,3 +44,8 @@ def parsePresetsData(data):
         application = data[i].get('application')
         version = data[i].get('version')
         option = data[i].get('option')
+
+
+
+def writePresetsConfig():
+    pass
