@@ -126,11 +126,12 @@ class MainWindow(QtCore.QObject):
     def launchApp(self):
         if self.UI.mainTabWidget.currentIndex() == 1:
 
+            project = self.UI.projectComboBox.currentText()
             app     = self.UI.appComboBox.currentText()
             version = self.UI.versionComboBox.currentText()
             option  = self.UI.optionComboBox.currentText()
             
-            words = ["\n[[ START LAUNCHING ]] :: ",app, version,"as", option, "mode."]
+            words = ["\n[[ START LAUNCHING ]] :: ",app, version,"as", option, "mode, on", project, "project."]
             print ' '.join(words)
 
             exe = CONFIG.get('apps').get(app).get('versions').get(version)
