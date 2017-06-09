@@ -20,9 +20,9 @@ def getLauncherConfig():
 
 
 
-def getPresetsConfig():
-    if os.environ.get('SAYA_PRESET_CONFIG_PATH'):
-        config_file = os.path.join(os.environ.get('SAYA_PRESET_CONFIG_PATH'), 'saya_preset.yaml')
+def getUserConfig():
+    if os.environ.get('SAYA_USER_CONFIG_PATH'):
+        config_file = os.path.join(os.environ.get('SAYA_USER_CONFIG_PATH'), 'saya_user.yaml')
         f = open(config_file, 'r')
         CONFIG = yaml.laod(f)
     else:
@@ -30,7 +30,7 @@ def getPresetsConfig():
             path = os.environ.get('APPDATA')
         elif platform.system() == 'Linux' or 'Mac':
             path = os.environ.get('HOME')
-        f = open(os.path.join(path, 'saya_presets.yaml'), 'r')
+        f = open(os.path.join(path, 'saya_user.yaml'), 'r')
         CONFIG = yaml.load(f)
 
     print "\n[[ LOADING ]] :: Loading Preset config data."
@@ -38,7 +38,7 @@ def getPresetsConfig():
     return CONFIG
 
 
-def parsePresetsData(data):
+def parseUserData(data):
     for i in range(len(data)):
         project = data[i].get('project')
         application = data[i].get('application')
@@ -47,5 +47,5 @@ def parsePresetsData(data):
 
 
 
-def writePresetsConfig():
+def writeUserConfig():
     pass

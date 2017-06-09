@@ -68,9 +68,7 @@ class MainWindow(QtCore.QObject):
 
 
     def createPresetsList(self):
-        pass
-        # data = Config.getPresetsConfig()
-        # CustomListDelegate(data)
+        data = Config.getUserConfig()
 
     def setProjects(self):
         self.UI.projectComboBox.clear()
