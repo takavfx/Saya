@@ -171,7 +171,7 @@
   </action>
   <action name="actionEdit_Software">
    <property name="text">
-    <string>Edit Launch Items</string>
+    <string>Package Manager</string>
    </property>
   </action>
   <action name="actionPreferences">
