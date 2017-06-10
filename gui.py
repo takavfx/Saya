@@ -123,10 +123,10 @@ class MainWindow(QtCore.QObject):
             self.UI.optionComboBox.addItem('default')
 
 
-    def getTabIndexByTitle(self, title):
+    def getTabIndexByTitle(self, tabWidget, title):
         index = 0
-        while index < self.count():
-            if self.tabText(index) == title:
+        while index < tabWidget.count():
+            if tabWidget.tabText(index) == title:
                 return index
 
             index += 1
@@ -135,7 +135,12 @@ class MainWindow(QtCore.QObject):
 
 
     def launchApp(self):
-        if self.UI.mainTabWidget.currentIndex() == 1:
+        if self.presetsList.currentIndex() == self.getTabIndexByTitle(self.UI.mainTabWidget, 'Presets'):
+            preset = self.presetsList.row()
+            print preset
+
+
+        elif self.UI.mainTabWidget.currentIndex() == self.getTabIndexByTitle(self.UI.mainTabWidget, 'Launch'):
 
             project = self.UI.projectComboBox.currentText()
             app     = self.UI.appComboBox.currentText()
