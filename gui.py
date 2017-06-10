@@ -11,6 +11,7 @@ import yaml
 import core
 import define as DEFINE
 import config as Config
+import presets as Presets
 
 
 _CURRENTPATH = os.path.dirname(os.path.realpath(__file__))
@@ -43,7 +44,7 @@ class MainWindow(QtCore.QObject):
         loader = QUiLoader()
         self.UI = loader.load(DEFINE.mainUIPath)
 
-        self.createPresetsList()
+        self.createPresetsList() # Create self.presetList <- QListView
         self.setSignals()
 
         self.UI.setObjectName(self._windowName)
@@ -69,6 +70,18 @@ class MainWindow(QtCore.QObject):
 
     def createPresetsList(self):
         data = Config.getUserConfig()
+        self.presetsList = QtGui.QListView()
+        model = Presets.PresetsListModel(data=data, config=CONFIG)
+        self.presetsList.setModel(model)
+        delegate = Presets.PresetsListDelegate()
+        self.presetsList.setItemDelegate(delegate)
+
+        self.presetsList.setFrameShadow(QtGui.QFrame.Plain)
+        
+        layout = QtGui.QVBoxLayout()
+        layout.addWidget(self.presetsList)
+        self.UI.presets.setLayout(layout)
+
 
     def setProjects(self):
         self.UI.projectComboBox.clear()
