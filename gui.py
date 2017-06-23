@@ -6,8 +6,6 @@ import webbrowser
 from PySide import QtCore, QtGui
 from PySide.QtUiTools import QUiLoader
 
-import yaml
-
 import core
 import define as DEFINE
 import config as Config
